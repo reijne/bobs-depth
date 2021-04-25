@@ -26,7 +26,7 @@ public class PiceLogic : MonoBehaviour
 
   private void OnMouseOver() {
     if (Input.GetMouseButton(0) && Input.GetMouseButton(1)) {
-      
+      shootIce();
     } else if (Input.GetMouseButton(0)) {
       freezeBob();
     } else if (Input.GetMouseButton(1)) {
@@ -55,5 +55,9 @@ public class PiceLogic : MonoBehaviour
     healthbar.transform.localScale = new Vector3(initialScale.x * ((float)health / (healthInit +  healthInit * handler.depth)),
                                                  initialScale.y,
                                                  initialScale.z);
+  }
+
+  private void shootIce() {
+    
   }
 }
