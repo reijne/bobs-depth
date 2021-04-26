@@ -7,7 +7,7 @@ public class handler : MonoBehaviour
 {
   public static handler instance;
   public static int depth = 0;
-  public static int maxDepth = 1;
+  public static int maxDepth = 9;
   
   void Start() {
     if (instance != null) {

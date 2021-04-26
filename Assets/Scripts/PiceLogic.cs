@@ -14,6 +14,8 @@ public class PiceLogic : MonoBehaviour
   public int healthInit;
   private int health;
   public float shootSpeed;
+  public int shootCooldownInit;
+  public int shootCooldown;
   private bool frozen;
   // Start is called before the first frame update
   void Start() {
@@ -31,6 +33,7 @@ public class PiceLogic : MonoBehaviour
       bob.GetComponent<BobMove>().moveSpeed = bob.GetComponent<BobMove>().moveSpeedInit;
     }
     frozen = false;
+    if (shootCooldown > 0) shootCooldown--;
   }
 
   private void OnMouseOver() {
@@ -61,11 +64,13 @@ public class PiceLogic : MonoBehaviour
   }
 
   private void shootIce() {
-    GameObject iceshot = GameObject.Instantiate(ice, transform.position, Quaternion.identity);
+    if (shootCooldown > 0) return;
     Vector2 dir = new Vector2(bob.transform.position.x - transform.position.x,
-                              bob.transform.position.y - transform.position.y);
+                              bob.transform.position.y - transform.position.y).normalized;
+    GameObject iceshot = GameObject.Instantiate(ice, transform.position + new Vector3(dir.x, dir.y, 0), Quaternion.identity);
     Debug.Log(dir);
     Debug.Log(shootSpeed*dir);
     iceshot.GetComponent<Rigidbody2D>().velocity = shootSpeed * dir;
+    shootCooldown = shootCooldownInit;
   }
 }

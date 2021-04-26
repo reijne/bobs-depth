@@ -101,6 +101,9 @@ MonoBehaviour:
   healthbar: {fileID: 2456564275538913330}
   initialScale: {x: 0, y: 0, z: 0}
   healthInit: 100
+  shootSpeed: 5
+  shootCooldownInit: 20
+  shootCooldown: 0
 --- !u!61 &2456564273995105992
 BoxCollider2D:
   m_ObjectHideFlags: 0

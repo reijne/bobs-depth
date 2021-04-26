@@ -8,6 +8,7 @@ public class spawnMobs : MonoBehaviour
   public List<GameObject> mobs = new List<GameObject>();
   public GameObject pric;
   public GameObject pillar;
+  public GameObject pice;
   public List<Vector3> availCorners = new List<Vector3>();
   
   // Start is called before the first frame update
@@ -32,9 +33,10 @@ public class spawnMobs : MonoBehaviour
   }
 
   private void spawnRandom() {
-    int choice = Random.Range(0, 2);
-    if (choice == 1 && availCorners.Count > 0) spawnPillar();
-    else spawnPric(randomLocation());
+    int choice = Random.Range(0, 3);
+    if (choice == 0 && availCorners.Count > 0) spawnPillar();
+    else if (choice == 1) spawnPric(randomLocation());
+    else spawnPice(randomLocation());
   }
 
   private Transform randomLocation() {
@@ -61,5 +63,10 @@ public class spawnMobs : MonoBehaviour
     availCorners.Remove(pos);
     GameObject newPillar = GameObject.Instantiate(pillar, pos, Quaternion.identity);
     mobs.Add(newPillar);
+  }
+
+  public void spawnPice(Transform tran) {
+    GameObject newPice = GameObject.Instantiate(pice, tran.position, Quaternion.identity);
+    mobs.Add(newPice);
   }
 }

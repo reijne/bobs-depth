@@ -5,6 +5,7 @@ using UnityEngine;
 public class iceLogic : MonoBehaviour
 {
   Camera cam;
+  public int lifeSpan;
   private void Start() {
     cam = GameObject.Find("Main Camera").GetComponent<Camera>();
   }
@@ -23,9 +24,15 @@ public class iceLogic : MonoBehaviour
   }
 
   private void Update() {
-    if (transform.position.x > 2*cam.orthographicSize || transform.position.y > 2*cam.orthographicSize) {
+    if (transform.position.x > 2*cam.orthographicSize || 
+        transform.position.y > 2*cam.orthographicSize ||
+        lifeSpan <= 0) {
       Destroy(this.gameObject);
       Destroy(this);
     }
+  }
+
+  private void FixedUpdate() {
+    lifeSpan--;
   }
 }
