@@ -29,7 +29,10 @@ public class BobShoot : MonoBehaviour
   void shoot(Transform firepoint, Color color) {
     laser.enabled = true;
     laser.SetPosition(0, firepoint.position + offset);
-    laser.SetPosition(1, cam.ScreenToWorldPoint(Input.mousePosition) + offset);
+    Vector3 mousy = cam.ScreenToWorldPoint(Input.mousePosition);
+    // mousy.z = -cam.transform.position.z;
+    mousy.z = 0;
+    laser.SetPosition(1,  mousy + offset);
     laser.startColor = color;
     laser.endColor = color;
   }

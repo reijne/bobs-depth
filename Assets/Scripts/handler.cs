@@ -7,7 +7,7 @@ public class handler : MonoBehaviour
 {
   public static handler instance;
   public static int depth = 0;
-  public static int maxDepth = 9;
+  public static int maxDepth = 1;
   
   void Start() {
     if (instance != null) {
@@ -27,6 +27,10 @@ public class handler : MonoBehaviour
     else depth -= 1;
 
     if (depth < 0) depth = 0;
+    else if (depth > maxDepth) {
+      SceneManager.LoadScene("win");
+      return;
+    } 
     Debug.Log(string.Format("New depth = {0}", depth));
     SceneManager.LoadScene("template");
   }
